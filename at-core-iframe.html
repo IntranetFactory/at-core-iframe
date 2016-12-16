@@ -1,0 +1,238 @@
+<link rel="import" href="../tangere/tangere.html">
+<link rel="import" href="../at-theme/at-theme.html">
+
+<dom-module id="at-core-iframe">
+  <template>
+    <style include="at-form-common"></style>
+    <style>
+    </style>
+    <iframe
+      id="localFrame"
+      src$="{{src}}"
+      width$="{{width}}"
+      height$="{{height}}"
+      sandbox$="{{sandbox}}"
+      accesskey$="{{accesskey}}"
+      contenteditable$="{{contenteditable}}"
+      contextmenu$="{{contextmenu}}"
+      dir$="{{dir}}"
+      draggable$="{{draggable}}"
+      hidden$="{{hidden}}"
+      lang$="{{lang}}"
+      spellcheck$="{{spellcheck}}"
+      tabindex$="{{tabindex}}"
+      title$="{{title}}"
+    ></iframe>
+
+  </template>
+  <script>
+    'use strict';
+
+    /*
+      Global properties not included and why (https://www.w3.org/wiki/HTML/Attributes/_Global)
+        class - we manage styling in a different manner
+        id - we manage id in a different manner
+        style - we manage styling in a different mannger
+        name - we manage name internally
+
+      Element specific attributes not included and why (https://www.w3.org/wiki/HTML/Elements/iframe)
+        srcdoc - removed because not supported in IE and Edge
+        seamless - removed because of reasons stated here https://github.com/whatwg/html/issues/331
+     */
+
+    Polymer({
+      is: 'at-core-iframe',
+      properties: {
+        /*
+          https://www.w3.org/wiki/HTML/Attributes/_Global
+        */
+        /**
+         * A key label or list of key labels with which to associate the element; each key label represents a keyboard shortcut which UAs can use to activate the element or give focus to the element.
+         * An ordered set of unique space-separated tokens, each of which must be exactly one Unicode code point in length.
+         * @property accesskey
+         * @type String
+         * @default ""
+         */
+        accesskey: {
+          type: String,
+          value: ""
+        },
+
+        /**
+         * contenteditable - Specifies whether the contents of the element are editable.
+         * @property contenteditable
+         * @type Boolean
+         * @default false
+         */
+        contenteditable: {
+          type: Boolean,
+          value: false
+        },
+
+        /**
+         * contextmenu - The value of the id attribute on the menu with which to associate the element as a context menu.
+         * @property contextmenu
+         * @type String
+         * @default ""
+         */
+        contextmenu: {
+          type: String,
+          value: ""
+        },
+
+        /**
+         * dir - Specifies the element’s text directionality.
+         * @property dir
+         * @type String
+         * @default "ltr"
+         */
+        dir: {
+          type: String,
+          value: "ltr"
+        },
+
+        /**
+         * draggable - Specifies whether the element is draggable.
+         * @property draggable
+         * @type Boolean
+         * @default false
+         */
+        draggable: {
+          type: Boolean,
+          value: false
+        },
+
+        /**
+         * hidden - Specifies that the element represents an element that is not yet, or is no longer, relevant.
+         * @property hidden
+         * @type Boolean
+         * @default false
+         */
+        hidden: {
+          type: Boolean,
+          value: false
+        },
+
+        /**
+         * lang - A unique identifier for the element. <br/>
+         * There must not be multiple elements in a document that have the same id value. <br/>
+         * Any string, with the following restrictions: <br/>
+         * 1. must be at least one character long  <br/>
+         * 2. must not contain any space characters
+         * @property lang
+         * @type String
+         * @default 'en'
+         */
+        lang: {
+          type: String,
+          value: 'en'
+        },
+
+        /**
+         * spellcheck - Specifies the primary language for the contents of the element and for any of the element’s attributes that contain text. <br/>
+         * A valid language tag, as defined in [BCP47].
+         * @property spellcheck
+         * @type Boolean
+         * @default false
+         */
+        spellcheck: {
+          type: Boolean,
+          value: false
+        },
+
+        /**
+         * tabindex - Specifies whether the element represents an element that is is focusable (that is, an element which is part of the sequence of focusable elements in the document), and the relative order of the element in the sequence of focusable elements in the document.
+         * @property tabindex
+         * @type Number
+         * @default -1
+         */
+        tabindex: {
+          type: Number,
+          value: -1
+        },
+
+        /**
+         * title - Advisory information associated with the element.
+         * @property title
+         * @type String
+         * @default ''
+         */
+        title: {
+          type: String,
+          value: ""
+        },
+
+        /*
+          https://www.w3.org/wiki/HTML/Elements/iframe
+          https://developer.mozilla.org/en/docs/Web/HTML/Element/iframe#Browser_compatibility
+        */
+        /**
+         * src - Gives the address of a page that the nested browsing context is to contain.
+         * @property src
+         * @type String
+         * @default ""
+         */
+        src: {
+          type: String,
+          value: ""
+        },
+
+        /**
+         * sandbox - Enables a set of extra restrictions on any content hosted by the iframe.
+         * Possible values allow-same-origin/ allow-top-navigation/ allow-forms/ allow-scripts
+         * @property sandbox
+         * @type String
+         * @default ""
+         */
+        sandbox: {
+          type: String,
+          value: "",
+          xtype: 'enum',
+          xvaluelist: [{
+            title: "none",
+            value: ""
+          }, {
+            title: "allow-same-origin",
+            value: "allow-same-origin"
+          }, {
+            title: "allow-top-navigation",
+            value: "allow-top-navigation"
+          }, {
+            title: "allow-forms",
+            value: "allow-forms"
+          }, {
+            title: "allow-scripts",
+            value: "allow-scripts"
+          }]
+        },
+
+        /**
+         * width - Give the width of the visual content of the element, in CSS pixels
+         * @property width
+         * @type String
+         * @default 100%
+         */
+        width: {
+          type: String,
+          value: '100%'
+        },
+
+        /**
+         * height - Give the height of the visual content of the element, in CSS pixels.
+         * @property height
+         * @type String
+         * @default 100%
+         */
+        height: {
+          type: String,
+          value: '100%'
+        }
+
+      },
+
+      ready: function () {
+
+      }
+    });
+  </script>
+</dom-module>

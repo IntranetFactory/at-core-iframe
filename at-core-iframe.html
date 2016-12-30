@@ -22,6 +22,9 @@
       spellcheck$="{{spellcheck}}"
       tabindex$="{{tabindex}}"
       title$="{{title}}"
+      frameborder$="{{frameborder}}"
+      allowfullscreen$="{{allowFullscreen}}"
+      scrolling$="{{scrolling}}"
     ></iframe>
 
   </template>
@@ -226,11 +229,65 @@
         height: {
           type: String,
           value: '100%'
+        },
+
+        /**
+         * The value 1 (the default) tells the browser to draw a border between this frame and every other frame.
+         * The value 0 tells the browser not to draw a border between this frame and other frames.
+         * @property frameborder
+         * @type String
+         * @default '0'
+         */
+        frameborder: {
+          type: String,
+          value: '0',
+          xtype: 'enum',
+          xvaluelist: [{
+            title: 'No border',
+            value: '0'
+          }, {
+            title: 'Border',
+            value: '1'
+          }]
+        },
+
+        /**
+         * This attribute can be set to true if the frame is allowed to be placed into full screen mode by calling its Element.requestFullscreen() method.
+         * If this isn't set, the element can't be placed into full screen mode.
+         * @property allowFullscreen
+         * @type Boolean
+         * @default false
+         */
+        allowFullscreen: {
+          type: Boolean,
+          value: false
+        },
+
+        /**
+         * Enumerated attribute indicating when the browser should provide a scroll bar (or other scrolling device) for the frame
+         * @property scrolling
+         * @type String
+         * @default "no"
+         */
+        scrolling: {
+          type: String,
+          value: "no",
+          xtype: 'enum',
+          xvaluelist: [{
+            title: 'Auto',
+            value: 'auto'
+          }, {
+            title: 'Always',
+            value: 'yes'
+          }, {
+            title: 'Never',
+            value: 'no'
+          }]
         }
 
       },
 
-      ready: function () {
+      ready: function() {
 
       }
     });
